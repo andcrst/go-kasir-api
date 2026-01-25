@@ -113,7 +113,7 @@ func deleteProduk(w http.ResponseWriter, r *http.Request) {
 
 func showKategori(w http.ResponseWriter, r *http.Request) {
 	// ambil id dari request
-	idStr := strings.TrimPrefix(r.URL.Path, "/api/categories/")
+	idStr := strings.TrimPrefix(r.URL.Path, "/categories/")
 
 	// ganti ID menjadi int
 	id, err := strconv.Atoi(idStr)
@@ -139,7 +139,7 @@ func showKategori(w http.ResponseWriter, r *http.Request) {
 
 func updateKategori(w http.ResponseWriter, r *http.Request) {
 	// get id dari url
-	idStr := strings.TrimPrefix(r.URL.Path, "/api/categories/")
+	idStr := strings.TrimPrefix(r.URL.Path, "/categories/")
 
 	// ubah id jadi int
 	id, err := strconv.Atoi(idStr)
@@ -174,7 +174,7 @@ func updateKategori(w http.ResponseWriter, r *http.Request) {
 
 func hapusKategori(w http.ResponseWriter, r *http.Request) {
 	// get id dari url path
-	idStr := strings.TrimPrefix(r.URL.Path, "/api/categories/")
+	idStr := strings.TrimPrefix(r.URL.Path, "/categories/")
 
 	// ubah id jadi int
 	id, err := strconv.Atoi(idStr)
@@ -202,7 +202,7 @@ func hapusKategori(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	http.HandleFunc("/api/categories/", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/categories/", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "GET" {
 			showKategori(w, r)
 		} else if r.Method == "PUT" {
@@ -212,7 +212,7 @@ func main() {
 		}
 	})
 
-	http.HandleFunc("/api/categories", func(w http.ResponseWriter, r *http.Request) {
+	http.HandleFunc("/categories", func(w http.ResponseWriter, r *http.Request) {
 		if r.Method == "GET" {
 			w.Header().Set("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(category)
