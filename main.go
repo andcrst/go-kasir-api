@@ -56,6 +56,7 @@ func main() {
 
 	// Category Routes
 	http.HandleFunc("/api/category", categoryHandler.HandleCategory)
+	http.HandleFunc("/api/category/", categoryHandler.HandleCategoryByID)
 
 	// localhost:8080/health
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {

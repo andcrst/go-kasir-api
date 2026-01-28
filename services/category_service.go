@@ -20,3 +20,15 @@ func (s *CategoryService) GetAll() ([]models.Category, error) {
 func (s *CategoryService) Create(data *models.Category) error {
 	return s.repo.Create(data)
 }
+
+func (s *CategoryService) GetByID(id int) (*models.Category, error) {
+	return s.repo.GetByID(id)
+}
+
+func (s *CategoryService) Update(categories *models.Category) error {
+	return s.repo.Update(categories)
+}
+
+func (s * CategoryService) Delete(id int) error {
+	return  s.repo.Delete(id)
+}
