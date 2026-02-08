@@ -41,7 +41,7 @@ func main() {
 	}
 	defer db.Close()
 
-	// Setup dependencies
+	// Setup dependencies Product
 	productRepo := repositories.NewProductRepository(db)
 	productService := services.NewProductService(productRepo)
 	productHandler := handlers.NewProductHandler(productService)
@@ -49,7 +49,7 @@ func main() {
 	http.HandleFunc("/api/produk", productHandler.HandleProducts)
 	http.HandleFunc("/api/produk/", productHandler.HandleProductByID)
 
-	// Setup dependencies
+	// Setup dependencies category
 	categoryRepo := repositories.NewCategoryRepository(db)
 	categoryService := services.NewCategoryService(categoryRepo)
 	categoryHandler := handlers.NewCategoryHandler(categoryService)
@@ -57,6 +57,14 @@ func main() {
 	// Category Routes
 	http.HandleFunc("/api/category", categoryHandler.HandleCategory)
 	http.HandleFunc("/api/category/", categoryHandler.HandleCategoryByID)
+
+	// // setup dependencies Transaction
+	// transactionRepo := repositories.NewTransactionRepository(db)
+	// transactionService := services.NewTransactionService(transactionRepo)
+	// transactionHandler := handlers.NewTransactionHandler(transactionService)
+
+	// // transaction routes
+	// http.HandleFunc("/api/checkout", transactionHandler.HandleCheckout) // POST
 
 	// localhost:8080/health
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
